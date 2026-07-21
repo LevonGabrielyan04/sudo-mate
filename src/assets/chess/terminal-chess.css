@@ -1,96 +1,103 @@
-/* Terminal monochrome theme for Chessground / vue3-chessboard. */
+/* Terminal neo-brutalist theme for Chessground / vue3-chessboard. */
 
 .terminal-chess {
-	--chess-light: #1a1a1a;
+	--chess-light: #262626;
 	--chess-dark: #0c0c0c;
 	--chess-piece-white: var(--term-fg, #d4d4d4);
 	--chess-piece-black: var(--term-mute, #6a6a6a);
-	--chess-highlight: rgb(126 198 153 / 22%);
+	--chess-highlight: rgb(126 198 153 / 35%);
 	--chess-accent: var(--term-accent, #7ec699);
+	--chess-danger: #ff5f56;
 	--chess-border: var(--term-border, #2a2a2a);
+
+	--chess-brutal-border: var(--term-fg, #d4d4d4);
+	--chess-brutal-border-width: 3px;
+	--chess-brutal-shadow-x: 5px;
+	--chess-brutal-shadow-y: 5px;
+	--chess-brutal-shadow-color: var(--chess-accent);
+	--chess-brutal-shadow: var(--chess-brutal-shadow-x) var(--chess-brutal-shadow-y) 0 0
+		var(--chess-brutal-shadow-color);
+	--chess-brutal-gap: 0.45rem;
+	--chess-brutal-btn-border-width: 2px;
+	--chess-brutal-btn-border: var(--chess-brutal-border);
+	--chess-brutal-btn-bg: var(--chess-light);
+	--chess-brutal-btn-shadow: 3px 3px 0 0 var(--chess-piece-black);
+	--chess-brutal-btn-shadow-hover: 4px 4px 0 0 var(--chess-accent);
 
 	max-width: min(100%, 28rem);
 }
 
 .terminal-chess .main-board {
 	container-type: inline-size;
-	border: 1px solid var(--chess-border);
 }
 
 /* Board squares */
 .terminal-chess cg-board {
 	background-color: var(--chess-dark);
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230c0c0c'/%3E%3Cg fill='%231a1a1a'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='3' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='7' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='1' height='1'/%3E%3Crect x='2' y='1' width='1' height='1'/%3E%3Crect x='4' y='1' width='1' height='1'/%3E%3Crect x='6' y='1' width='1' height='1'/%3E%3Crect x='1' y='2' width='1' height='1'/%3E%3Crect x='3' y='2' width='1' height='1'/%3E%3Crect x='5' y='2' width='1' height='1'/%3E%3Crect x='7' y='2' width='1' height='1'/%3E%3Crect x='0' y='3' width='1' height='1'/%3E%3Crect x='2' y='3' width='1' height='1'/%3E%3Crect x='4' y='3' width='1' height='1'/%3E%3Crect x='6' y='3' width='1' height='1'/%3E%3Crect x='1' y='4' width='1' height='1'/%3E%3Crect x='3' y='4' width='1' height='1'/%3E%3Crect x='5' y='4' width='1' height='1'/%3E%3Crect x='7' y='4' width='1' height='1'/%3E%3Crect x='0' y='5' width='1' height='1'/%3E%3Crect x='2' y='5' width='1' height='1'/%3E%3Crect x='4' y='5' width='1' height='1'/%3E%3Crect x='6' y='5' width='1' height='1'/%3E%3Crect x='1' y='6' width='1' height='1'/%3E%3Crect x='3' y='6' width='1' height='1'/%3E%3Crect x='5' y='6' width='1' height='1'/%3E%3Crect x='7' y='6' width='1' height='1'/%3E%3Crect x='0' y='7' width='1' height='1'/%3E%3Crect x='2' y='7' width='1' height='1'/%3E%3Crect x='4' y='7' width='1' height='1'/%3E%3Crect x='6' y='7' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230c0c0c'/%3E%3Cg fill='%23262626'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='3' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='7' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='1' height='1'/%3E%3Crect x='2' y='1' width='1' height='1'/%3E%3Crect x='4' y='1' width='1' height='1'/%3E%3Crect x='6' y='1' width='1' height='1'/%3E%3Crect x='1' y='2' width='1' height='1'/%3E%3Crect x='3' y='2' width='1' height='1'/%3E%3Crect x='5' y='2' width='1' height='1'/%3E%3Crect x='7' y='2' width='1' height='1'/%3E%3Crect x='0' y='3' width='1' height='1'/%3E%3Crect x='2' y='3' width='1' height='1'/%3E%3Crect x='4' y='3' width='1' height='1'/%3E%3Crect x='6' y='3' width='1' height='1'/%3E%3Crect x='1' y='4' width='1' height='1'/%3E%3Crect x='3' y='4' width='1' height='1'/%3E%3Crect x='5' y='4' width='1' height='1'/%3E%3Crect x='7' y='4' width='1' height='1'/%3E%3Crect x='0' y='5' width='1' height='1'/%3E%3Crect x='2' y='5' width='1' height='1'/%3E%3Crect x='4' y='5' width='1' height='1'/%3E%3Crect x='6' y='5' width='1' height='1'/%3E%3Crect x='1' y='6' width='1' height='1'/%3E%3Crect x='3' y='6' width='1' height='1'/%3E%3Crect x='5' y='6' width='1' height='1'/%3E%3Crect x='7' y='6' width='1' height='1'/%3E%3Crect x='0' y='7' width='1' height='1'/%3E%3Crect x='2' y='7' width='1' height='1'/%3E%3Crect x='4' y='7' width='1' height='1'/%3E%3Crect x='6' y='7' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .terminal-chess cg-board square.move-dest {
-	background: radial-gradient(
-		rgb(126 198 153 / 45%) 22%,
-		var(--chess-accent) 0,
-		transparent 0,
-		transparent 0
-	);
+	background: linear-gradient(var(--chess-accent), var(--chess-accent)) center / 26% 26%
+		no-repeat;
 }
 
 .terminal-chess cg-board square.premove-dest {
-	background: radial-gradient(
-		rgb(106 106 106 / 45%) 22%,
-		var(--chess-piece-black) 0,
-		transparent 0,
-		transparent 0
-	);
+	background: linear-gradient(var(--chess-piece-black), var(--chess-piece-black)) center /
+		26% 26% no-repeat;
 }
 
 .terminal-chess cg-board square.oc.move-dest {
-	background: radial-gradient(
-		transparent 0%,
-		transparent 80%,
-		rgb(126 198 153 / 35%) 80%
-	);
+	background:
+		linear-gradient(var(--chess-dark), var(--chess-dark)) center / 58% 58% no-repeat,
+		linear-gradient(var(--chess-accent), var(--chess-accent)) center / 78% 78% no-repeat;
 }
 
 .terminal-chess cg-board square.oc.premove-dest {
-	background: radial-gradient(
-		transparent 0%,
-		transparent 80%,
-		rgb(106 106 106 / 30%) 80%
-	);
+	background:
+		linear-gradient(var(--chess-dark), var(--chess-dark)) center / 58% 58% no-repeat,
+		linear-gradient(var(--chess-piece-black), var(--chess-piece-black)) center / 78% 78%
+			no-repeat;
 }
 
 .terminal-chess cg-board square.move-dest:hover {
-	background: rgb(126 198 153 / 25%);
+	background: linear-gradient(rgb(126 198 153 / 55%), rgb(126 198 153 / 55%)) center /
+		34% 34% no-repeat;
 }
 
 .terminal-chess cg-board square.premove-dest:hover {
-	background: rgb(106 106 106 / 20%);
+	background: linear-gradient(rgb(106 106 106 / 45%), rgb(106 106 106 / 45%)) center /
+		34% 34% no-repeat;
 }
 
 .terminal-chess cg-board square.last-move {
 	background-color: var(--chess-highlight);
+	box-shadow: inset 0 0 0 2px rgb(126 198 153 / 65%);
 }
 
 .terminal-chess cg-board square.selected {
-	background-color: rgb(126 198 153 / 32%);
+	background-color: rgb(126 198 153 / 28%);
+	box-shadow: inset 0 0 0 3px var(--chess-accent);
 }
 
 .terminal-chess cg-board square.check {
-	background: radial-gradient(
-		ellipse at center,
-		rgb(255 95 86 / 55%) 0%,
-		rgb(255 95 86 / 25%) 45%,
-		transparent 85%
-	);
+	background-color: rgb(255 95 86 / 38%);
+	box-shadow: inset 0 0 0 3px var(--chess-danger);
 }
 
 .terminal-chess cg-board square.current-premove {
 	background-color: rgb(106 106 106 / 35%);
+	box-shadow: inset 0 0 0 2px var(--chess-piece-black);
 }
 
 /* Coordinates */
 .terminal-chess .cg-wrap coords {
-	opacity: 0.75;
+	opacity: 1;
 	font-family: inherit;
 	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	text-shadow: 1px 1px 0 rgb(0 0 0 / 85%);
 }
 
 .terminal-chess .orientation-white .ranks :nth-child(odd),
@@ -121,16 +128,23 @@
 
 .terminal-chess .cg-wrap piece::before {
 	font-size: 10cqi;
+	font-weight: 700;
 	line-height: 1;
 	pointer-events: none;
 }
 
 .terminal-chess .cg-wrap piece.white::before {
 	color: var(--chess-piece-white);
+	text-shadow:
+		2px 2px 0 var(--chess-accent),
+		-1px -1px 0 rgb(0 0 0 / 80%);
 }
 
 .terminal-chess .cg-wrap piece.black::before {
 	color: var(--chess-piece-black);
+	text-shadow:
+		2px 2px 0 #000,
+		-1px -1px 0 rgb(212 212 212 / 18%);
 }
 
 .terminal-chess .cg-wrap piece.king.white::before {
@@ -182,14 +196,16 @@
 }
 
 .terminal-chess .cg-wrap piece.ghost::before {
-	opacity: 0.35;
+	opacity: 0.45;
 	color: var(--chess-accent);
+	text-shadow: 1px 1px 0 rgb(0 0 0 / 70%);
 }
 
 /* Promotion dialog */
 .terminal-chess .promotion-dialog {
-	background-color: var(--chess-dark);
-	border: 1px solid var(--chess-border);
+	background-color: var(--chess-light);
+	border: var(--chess-brutal-border-width) solid var(--chess-brutal-border);
+	box-shadow: var(--chess-brutal-shadow);
 }
 
 .terminal-chess .promotion-dialog button {
@@ -202,15 +218,18 @@
 
 .terminal-chess .promotion-dialog button::before {
 	font-size: 2rem;
+	font-weight: 700;
 	line-height: 1;
 }
 
 .terminal-chess .promotion-dialog button.white::before {
 	color: var(--chess-piece-white);
+	text-shadow: 2px 2px 0 var(--chess-accent);
 }
 
 .terminal-chess .promotion-dialog button.black::before {
 	color: var(--chess-piece-black);
+	text-shadow: 2px 2px 0 #000;
 }
 
 .terminal-chess .promotion-dialog button.queen.white::before {
@@ -246,5 +265,5 @@
 }
 
 .terminal-chess .promotion-dialog button:hover {
-	background: rgb(126 198 153 / 12%);
+	background-color: rgb(126 198 153 / 18%);
 }
