@@ -1,0 +1,250 @@
+/* Terminal monochrome theme for Chessground / vue3-chessboard. */
+
+.terminal-chess {
+	--chess-light: #1a1a1a;
+	--chess-dark: #0c0c0c;
+	--chess-piece-white: var(--term-fg, #d4d4d4);
+	--chess-piece-black: var(--term-mute, #6a6a6a);
+	--chess-highlight: rgb(126 198 153 / 22%);
+	--chess-accent: var(--term-accent, #7ec699);
+	--chess-border: var(--term-border, #2a2a2a);
+
+	max-width: min(100%, 28rem);
+}
+
+.terminal-chess .main-board {
+	container-type: inline-size;
+	border: 1px solid var(--chess-border);
+}
+
+/* Board squares */
+.terminal-chess cg-board {
+	background-color: var(--chess-dark);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230c0c0c'/%3E%3Cg fill='%231a1a1a'%3E%3Crect x='1' y='0' width='1' height='1'/%3E%3Crect x='3' y='0' width='1' height='1'/%3E%3Crect x='5' y='0' width='1' height='1'/%3E%3Crect x='7' y='0' width='1' height='1'/%3E%3Crect x='0' y='1' width='1' height='1'/%3E%3Crect x='2' y='1' width='1' height='1'/%3E%3Crect x='4' y='1' width='1' height='1'/%3E%3Crect x='6' y='1' width='1' height='1'/%3E%3Crect x='1' y='2' width='1' height='1'/%3E%3Crect x='3' y='2' width='1' height='1'/%3E%3Crect x='5' y='2' width='1' height='1'/%3E%3Crect x='7' y='2' width='1' height='1'/%3E%3Crect x='0' y='3' width='1' height='1'/%3E%3Crect x='2' y='3' width='1' height='1'/%3E%3Crect x='4' y='3' width='1' height='1'/%3E%3Crect x='6' y='3' width='1' height='1'/%3E%3Crect x='1' y='4' width='1' height='1'/%3E%3Crect x='3' y='4' width='1' height='1'/%3E%3Crect x='5' y='4' width='1' height='1'/%3E%3Crect x='7' y='4' width='1' height='1'/%3E%3Crect x='0' y='5' width='1' height='1'/%3E%3Crect x='2' y='5' width='1' height='1'/%3E%3Crect x='4' y='5' width='1' height='1'/%3E%3Crect x='6' y='5' width='1' height='1'/%3E%3Crect x='1' y='6' width='1' height='1'/%3E%3Crect x='3' y='6' width='1' height='1'/%3E%3Crect x='5' y='6' width='1' height='1'/%3E%3Crect x='7' y='6' width='1' height='1'/%3E%3Crect x='0' y='7' width='1' height='1'/%3E%3Crect x='2' y='7' width='1' height='1'/%3E%3Crect x='4' y='7' width='1' height='1'/%3E%3Crect x='6' y='7' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.terminal-chess cg-board square.move-dest {
+	background: radial-gradient(
+		rgb(126 198 153 / 45%) 22%,
+		var(--chess-accent) 0,
+		transparent 0,
+		transparent 0
+	);
+}
+
+.terminal-chess cg-board square.premove-dest {
+	background: radial-gradient(
+		rgb(106 106 106 / 45%) 22%,
+		var(--chess-piece-black) 0,
+		transparent 0,
+		transparent 0
+	);
+}
+
+.terminal-chess cg-board square.oc.move-dest {
+	background: radial-gradient(
+		transparent 0%,
+		transparent 80%,
+		rgb(126 198 153 / 35%) 80%
+	);
+}
+
+.terminal-chess cg-board square.oc.premove-dest {
+	background: radial-gradient(
+		transparent 0%,
+		transparent 80%,
+		rgb(106 106 106 / 30%) 80%
+	);
+}
+
+.terminal-chess cg-board square.move-dest:hover {
+	background: rgb(126 198 153 / 25%);
+}
+
+.terminal-chess cg-board square.premove-dest:hover {
+	background: rgb(106 106 106 / 20%);
+}
+
+.terminal-chess cg-board square.last-move {
+	background-color: var(--chess-highlight);
+}
+
+.terminal-chess cg-board square.selected {
+	background-color: rgb(126 198 153 / 32%);
+}
+
+.terminal-chess cg-board square.check {
+	background: radial-gradient(
+		ellipse at center,
+		rgb(255 95 86 / 55%) 0%,
+		rgb(255 95 86 / 25%) 45%,
+		transparent 85%
+	);
+}
+
+.terminal-chess cg-board square.current-premove {
+	background-color: rgb(106 106 106 / 35%);
+}
+
+/* Coordinates */
+.terminal-chess .cg-wrap coords {
+	opacity: 0.75;
+	font-family: inherit;
+	font-size: 9px;
+}
+
+.terminal-chess .orientation-white .ranks :nth-child(odd),
+.terminal-chess .orientation-white .files :nth-child(even),
+.terminal-chess .orientation-black .ranks :nth-child(even),
+.terminal-chess .orientation-black .files :nth-child(odd),
+.terminal-chess coords.squares:nth-of-type(odd) :nth-child(even),
+.terminal-chess coords.squares:nth-of-type(even) :nth-child(odd) {
+	color: var(--chess-piece-black);
+}
+
+.terminal-chess .orientation-white .ranks :nth-child(even),
+.terminal-chess .orientation-white .files :nth-child(odd),
+.terminal-chess .orientation-black .ranks :nth-child(odd),
+.terminal-chess .orientation-black .files :nth-child(even),
+.terminal-chess coords.squares:nth-of-type(odd) :nth-child(odd),
+.terminal-chess coords.squares:nth-of-type(even) :nth-child(even) {
+	color: var(--chess-piece-white);
+}
+
+/* Unicode piece glyphs */
+.terminal-chess .cg-wrap piece {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: none !important;
+}
+
+.terminal-chess .cg-wrap piece::before {
+	font-size: 10cqi;
+	line-height: 1;
+	pointer-events: none;
+}
+
+.terminal-chess .cg-wrap piece.white::before {
+	color: var(--chess-piece-white);
+}
+
+.terminal-chess .cg-wrap piece.black::before {
+	color: var(--chess-piece-black);
+}
+
+.terminal-chess .cg-wrap piece.king.white::before {
+	content: "♔";
+}
+
+.terminal-chess .cg-wrap piece.queen.white::before {
+	content: "♕";
+}
+
+.terminal-chess .cg-wrap piece.rook.white::before {
+	content: "♖";
+}
+
+.terminal-chess .cg-wrap piece.bishop.white::before {
+	content: "♗";
+}
+
+.terminal-chess .cg-wrap piece.knight.white::before {
+	content: "♘";
+}
+
+.terminal-chess .cg-wrap piece.pawn.white::before {
+	content: "♙";
+}
+
+.terminal-chess .cg-wrap piece.king.black::before {
+	content: "♚";
+}
+
+.terminal-chess .cg-wrap piece.queen.black::before {
+	content: "♛";
+}
+
+.terminal-chess .cg-wrap piece.rook.black::before {
+	content: "♜";
+}
+
+.terminal-chess .cg-wrap piece.bishop.black::before {
+	content: "♝";
+}
+
+.terminal-chess .cg-wrap piece.knight.black::before {
+	content: "♞";
+}
+
+.terminal-chess .cg-wrap piece.pawn.black::before {
+	content: "♟";
+}
+
+.terminal-chess .cg-wrap piece.ghost::before {
+	opacity: 0.35;
+	color: var(--chess-accent);
+}
+
+/* Promotion dialog */
+.terminal-chess .promotion-dialog {
+	background-color: var(--chess-dark);
+	border: 1px solid var(--chess-border);
+}
+
+.terminal-chess .promotion-dialog button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: none !important;
+	font-family: inherit;
+}
+
+.terminal-chess .promotion-dialog button::before {
+	font-size: 2rem;
+	line-height: 1;
+}
+
+.terminal-chess .promotion-dialog button.white::before {
+	color: var(--chess-piece-white);
+}
+
+.terminal-chess .promotion-dialog button.black::before {
+	color: var(--chess-piece-black);
+}
+
+.terminal-chess .promotion-dialog button.queen.white::before {
+	content: "♕";
+}
+
+.terminal-chess .promotion-dialog button.knight.white::before {
+	content: "♘";
+}
+
+.terminal-chess .promotion-dialog button.rook.white::before {
+	content: "♖";
+}
+
+.terminal-chess .promotion-dialog button.bishop.white::before {
+	content: "♗";
+}
+
+.terminal-chess .promotion-dialog button.queen.black::before {
+	content: "♛";
+}
+
+.terminal-chess .promotion-dialog button.knight.black::before {
+	content: "♞";
+}
+
+.terminal-chess .promotion-dialog button.rook.black::before {
+	content: "♜";
+}
+
+.terminal-chess .promotion-dialog button.bishop.black::before {
+	content: "♝";
+}
+
+.terminal-chess .promotion-dialog button:hover {
+	background: rgb(126 198 153 / 12%);
+}
