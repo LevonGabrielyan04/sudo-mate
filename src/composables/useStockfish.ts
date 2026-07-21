@@ -1,7 +1,8 @@
 import type { StockfishStrengthConfig } from "@/composables/stockfishDifficulty";
 import { computed, onUnmounted, ref, shallowRef } from "vue";
 
-const DEFAULT_ENGINE_URL = `${import.meta.env.BASE_URL}stockfish/stockfish-18-lite-single.js`;
+const DEFAULT_ENGINE_URL = `${import.meta.env.BASE_URL}stockfish/stockfish-18-lite.js`;
+const MAX_THREADS = 4;
 
 export interface StockfishSearchOptions {
 	depth?: number;
@@ -10,7 +11,19 @@ export interface StockfishSearchOptions {
 
 export interface UseStockfishOptions {
 	engineUrl?: string;
+	threads?: number;
 	strength?: StockfishStrengthConfig;
+}
+
+function resolveThreadCount(explicit?: number): number {
+	if (explicit !== undefined) {
+		return Math.max(1, Math.min(explicit, MAX_THREADS));
+	}
+
+	const cores =
+		typeof navigator !== "undefined" ? navigator.hardwareConcurrency || 2 : 2;
+	// Leave one core for the UI; cap for browser friendliness.
+	return Math.max(1, Math.min(cores - 1, MAX_THREADS));
 }
 
 function applyStrength(
@@ -32,6 +45,7 @@ function applyStrength(
 
 export function useStockfish(options: UseStockfishOptions = {}) {
 	const engineUrl = options.engineUrl ?? DEFAULT_ENGINE_URL;
+	const threads = resolveThreadCount(options.threads);
 	const strength = options.strength;
 	const ready = ref(false);
 	const thinking = ref(false);
@@ -66,6 +80,7 @@ export function useStockfish(options: UseStockfishOptions = {}) {
 
 	function handleEngineLine(line: string) {
 		if (line === "uciok") {
+			send(`setoption name Threads value ${threads}`);
 			applyStrength(send, strength);
 			send("isready");
 			return;
@@ -100,6 +115,16 @@ export function useStockfish(options: UseStockfishOptions = {}) {
 	}
 
 	function init() {
+		if (
+			typeof SharedArrayBuffer === "undefined" ||
+			typeof crossOriginIsolated === "undefined" ||
+			!crossOriginIsolated
+		) {
+			console.error(
+				"Stockfish requires cross-origin isolation (COOP/COEP) for multi-threaded WASM.",
+			);
+		}
+
 		const engineWorker = new Worker(engineUrl);
 		worker.value = engineWorker;
 
@@ -160,6 +185,7 @@ export function useStockfish(options: UseStockfishOptions = {}) {
 		evalCp,
 		evalMate,
 		evalText,
+		threads,
 		requestBestMove,
 	};
 }

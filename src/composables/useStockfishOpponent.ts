@@ -21,7 +21,7 @@ export function useStockfishOpponent(
 		options.difficulty ?? DEFAULT_DIFFICULTY,
 	);
 
-	const { ready, thinking, evalText, requestBestMove } = useStockfish({
+	const { ready, thinking, evalText, threads, requestBestMove } = useStockfish({
 		engineUrl: options.engineUrl,
 		strength: difficulty.strength,
 	});
@@ -54,6 +54,7 @@ export function useStockfishOpponent(
 		ready,
 		thinking,
 		evalText,
+		threads,
 		onBoardCreated,
 		onMove,
 	};

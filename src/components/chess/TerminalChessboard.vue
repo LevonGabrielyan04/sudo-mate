@@ -12,7 +12,7 @@ defineOptions({
 	name: "TerminalChessboard",
 });
 
-const { ready, thinking, evalText, onBoardCreated, onMove } =
+const { ready, thinking, evalText, threads, onBoardCreated, onMove } =
 	useStockfishOpponent();
 
 const boardConfig: BoardConfig = {
@@ -39,7 +39,7 @@ const boardConfig: BoardConfig = {
       <span v-if="!ready" class="terminal-chess__status-line">stockfish › booting…</span>
       <span v-else-if="thinking" class="terminal-chess__status-line">stockfish › thinking…</span>
       <span v-else class="terminal-chess__status-line">
-        stockfish › ready<span v-if="evalText"> · eval {{ evalText }}</span>
+        stockfish › ready · {{ threads }} thr<span v-if="evalText"> · eval {{ evalText }}</span>
       </span>
     </footer>
   </section>

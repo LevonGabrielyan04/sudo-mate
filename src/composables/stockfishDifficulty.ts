@@ -59,7 +59,7 @@ export const DIFFICULTY_LEVELS: Record<DifficultyLevel, DifficultyConfig> = {
 		level: 7,
 		label: "Master",
 		strength: { limitStrength: false },
-		search: { depth: 18 },
+		search: { depth: 20 },
 	},
 };
 
