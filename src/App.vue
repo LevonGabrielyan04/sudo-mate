@@ -1,41 +1,39 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+import Header from "./components/Header.vue";
+import IndexPage from "./pages/index.vue";
 </script>
 
 <template>
-  <header>
-  </header>
-
-  <main>
-  </main>
+  <div class="terminal">
+    <header>
+      <Header />
+    </header>
+    <IndexPage />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
+.terminal {
+  --term-bg: #0c0c0c;
+  --term-fg: #d4d4d4;
+  --term-mute: #6a6a6a;
+  --term-accent: #7ec699;
+  --term-chrome: #161616;
+  --term-border: #2a2a2a;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  background: var(--term-bg);
+  color: var(--term-fg);
+  font-family:
+    "JetBrains Mono", "Cascadia Code", "SF Mono", ui-monospace, Menlo, Consolas,
+    monospace;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  border: 1px solid var(--term-border);
 }
 </style>
